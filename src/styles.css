@@ -1,0 +1,390 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #edf1f3;
+  color: #172024;
+  --surface: #ffffff;
+  --surface-strong: #f7f9fa;
+  --ink: #172024;
+  --muted: #607077;
+  --line: #d5dde1;
+  --accent: #0f7c75;
+  --accent-strong: #0a5f5a;
+  --accent-soft: #dff4f1;
+  --warning: #b84a32;
+  --shadow: 0 24px 70px rgba(23, 32, 36, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgba(15, 124, 117, 0.08), transparent 45%),
+    var(--background, #edf1f3);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(360px, 0.76fr);
+  gap: 24px;
+  width: min(1180px, calc(100% - 32px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 32px 0;
+  align-items: center;
+}
+
+.calculator-panel,
+.results-panel {
+  background: var(--surface);
+  border: 1px solid rgba(213, 221, 225, 0.9);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.calculator-panel {
+  display: grid;
+  gap: 28px;
+  padding: 32px;
+}
+
+.intro {
+  max-width: 650px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent-strong);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 12px;
+  color: var(--ink);
+  font-size: 2.75rem;
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.summary {
+  max-width: 620px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.calculator-form {
+  display: grid;
+  gap: 18px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.field > span:first-child,
+.field legend {
+  font-size: 0.95rem;
+}
+
+.field input {
+  min-width: 0;
+  width: 100%;
+  height: 54px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--ink);
+  font-size: 1.08rem;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.money-field,
+.suffix-field {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  min-height: 54px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--muted);
+  overflow: hidden;
+}
+
+.suffix-field {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.money-field:focus-within,
+.suffix-field:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.money-field span,
+.suffix-field span {
+  padding: 0 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.money-field input,
+.suffix-field input {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.money-field input:focus,
+.suffix-field input:focus {
+  box-shadow: none;
+}
+
+.frequency-field {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.frequency-field legend {
+  margin-bottom: 8px;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  min-height: 54px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+}
+
+.segmented-control label {
+  min-width: 0;
+}
+
+.segmented-control input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segmented-control span {
+  display: grid;
+  min-height: 40px;
+  padding: 0 10px;
+  place-items: center;
+  border-radius: 6px;
+  color: var(--muted);
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+}
+
+.segmented-control input:checked + span {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.segmented-control input:focus-visible + span {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 2px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+button {
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--accent-strong);
+}
+
+button.secondary {
+  border-color: var(--line);
+  background: #ffffff;
+  color: var(--ink);
+}
+
+button.secondary:hover {
+  border-color: #9dafb6;
+  background: #f9fbfb;
+}
+
+.results-panel {
+  display: grid;
+  gap: 28px;
+  padding: 30px;
+}
+
+.result-value {
+  margin-bottom: 2px;
+  color: var(--ink);
+  font-size: 3rem;
+  line-height: 1.05;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.result-caption {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.result-grid,
+.breakdown dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.result-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.result-grid > div,
+.breakdown dl > div {
+  display: grid;
+  gap: 5px;
+  min-height: 88px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+}
+
+dt {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.22rem;
+  font-weight: 850;
+  overflow-wrap: anywhere;
+}
+
+.breakdown {
+  display: grid;
+  gap: 12px;
+}
+
+.breakdown h3 {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+.breakdown dl {
+  grid-template-columns: 1fr;
+}
+
+.breakdown dl > div {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-height: 56px;
+}
+
+.fine-print {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+[data-state="invalid"] input:invalid {
+  border-color: var(--warning);
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .calculator-panel,
+  .results-panel {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 620px) {
+  .app-shell {
+    width: min(100% - 20px, 1180px);
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  .field-row,
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .segmented-control {
+    grid-template-columns: 1fr;
+  }
+
+  .result-value {
+    font-size: 2.2rem;
+  }
+}

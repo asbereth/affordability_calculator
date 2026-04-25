@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Australian Mortgage Affordability Calculator</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="calculator-panel" aria-labelledby="page-title">
+        <div class="intro">
+          <p class="eyebrow">Australian mortgage calculator</p>
+          <h1 id="page-title">Borrowing estimate</h1>
+          <p class="summary">
+            Enter what you can repay to estimate the loan size that repayment can support.
+          </p>
+        </div>
+
+        <form class="calculator-form" id="mortgage-form">
+          <label class="field">
+            <span>Repayment you can afford</span>
+            <span class="money-field">
+              <span aria-hidden="true">$</span>
+              <input
+                id="repayment-amount"
+                name="repaymentAmount"
+                type="number"
+                min="1"
+                step="50"
+                inputmode="decimal"
+                value="4900"
+                required
+              />
+            </span>
+          </label>
+
+          <div class="field-row">
+            <label class="field">
+              <span>Interest rate</span>
+              <span class="suffix-field">
+                <input
+                  id="interest-rate"
+                  name="interestRate"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  inputmode="decimal"
+                  value="6.19"
+                  required
+                />
+                <span aria-hidden="true">%</span>
+              </span>
+            </label>
+
+            <label class="field">
+              <span>Loan term</span>
+              <span class="suffix-field">
+                <input
+                  id="loan-term"
+                  name="loanTerm"
+                  type="number"
+                  min="1"
+                  max="40"
+                  step="1"
+                  inputmode="numeric"
+                  value="30"
+                  required
+                />
+                <span aria-hidden="true">years</span>
+              </span>
+            </label>
+          </div>
+
+          <fieldset class="field frequency-field">
+            <legend>Repayment frequency</legend>
+            <div class="segmented-control">
+              <label>
+                <input type="radio" name="frequency" value="weekly" />
+                <span>Weekly</span>
+              </label>
+              <label>
+                <input type="radio" name="frequency" value="fortnightly" />
+                <span>Fortnightly</span>
+              </label>
+              <label>
+                <input type="radio" name="frequency" value="monthly" checked />
+                <span>Monthly</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span>Deposit saved</span>
+            <span class="money-field">
+              <span aria-hidden="true">$</span>
+              <input
+                id="deposit-amount"
+                name="depositAmount"
+                type="number"
+                min="0"
+                step="1000"
+                inputmode="decimal"
+                value="160000"
+              />
+            </span>
+          </label>
+
+          <div class="actions">
+            <button type="submit">Calculate</button>
+            <button type="reset" class="secondary">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="results-panel" aria-live="polite" aria-labelledby="results-title">
+        <div>
+          <p class="eyebrow">Estimated borrowing capacity</p>
+          <h2 id="results-title" class="result-value">$0</h2>
+          <p id="frequency-label" class="result-caption">based on your repayment</p>
+        </div>
+
+        <dl class="result-grid">
+          <div>
+            <dt>Estimated property price</dt>
+            <dd id="property-price">$0</dd>
+          </div>
+          <div>
+            <dt>Deposit</dt>
+            <dd id="deposit-used">$0</dd>
+          </div>
+          <div>
+            <dt>Total interest</dt>
+            <dd id="total-interest">$0</dd>
+          </div>
+          <div>
+            <dt>Loan-to-value ratio</dt>
+            <dd id="loan-to-value">0%</dd>
+          </div>
+        </dl>
+
+        <div class="breakdown">
+          <h3>Repayment comparison for this loan</h3>
+          <dl>
+            <div>
+              <dt>Weekly</dt>
+              <dd id="weekly-payment">$0</dd>
+            </div>
+            <div>
+              <dt>Fortnightly</dt>
+              <dd id="fortnightly-payment">$0</dd>
+            </div>
+            <div>
+              <dt>Monthly</dt>
+              <dd id="monthly-payment">$0</dd>
+            </div>
+          </dl>
+        </div>
+
+        <p class="fine-print">
+          Estimates use a fixed principal-and-interest repayment formula. Lenders assess income,
+          expenses, debts, credit limits, buffers, and policy settings separately.
+        </p>
+      </aside>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
